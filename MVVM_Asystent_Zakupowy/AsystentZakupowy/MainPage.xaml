@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mw="clr-namespace:AsystentZakupowy.ModelWidoku"
+             xmlns:w="clr-namespace:AsystentZakupowy"
+             x:Class="AsystentZakupowy.MainPage">
+
+    <ContentPage.BindingContext>
+        <mw:SumatorMW />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <w:DecimaToStringConverter x:Key="d2s" />
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Editor
+                x:Name="edKwota"
+                Text="{Binding Kwota, Mode=TwoWay, Converter={StaticResource d2s}}"
+                SemanticProperties.Hint="Kwota, jaką należy dodać"
+                FontSize="32"
+                HorizontalOptions="Center"
+                WidthRequest="300" />
+
+            <Button
+                x:Name="btnDodajKwote"
+                Text="Dodaj kwotę"
+                IsEnabled="True"
+                SemanticProperties.Hint="Przycisk dodający kwotę do sumy"
+                Command="{Binding Dodaj}"
+                FontSize="32"
+                WidthRequest="300"
+                HorizontalOptions="Center" />
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Suma:"
+                       FontSize="32" 
+                       Margin="0,0,30,0"/>
+                <Label
+                    TextColor="Blue"
+                    x:Name="lbSuma"
+                    Text="{Binding Suma, Mode=OneWay, Converter={StaticResource d2s}}"
+                    SemanticProperties.Hint="Zgromadzona suma"
+                    FontSize="32"
+                    WidthRequest="300" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

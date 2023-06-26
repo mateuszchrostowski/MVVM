@@ -1,0 +1,38 @@
+﻿<Window x:Class="AsystentZakupowyWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AsystentZakupowyWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel Orientation="Vertical">
+
+        <TextBox x:Name="edKwota" Margin="10,10,10,0"
+                 Text="0"
+                 FontSize="32"
+                 HorizontalAlignment="Center"
+                 Width="300"/>
+
+        <Button Content="Dodaj kwotę" Margin="10,10,10,0"
+                x:Name="btnDodajKwote"      
+                Click="btnDodajKwote_Click"
+                FontSize="32"
+                Width="300"
+                HorizontalAlignment="Center" />
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"  
+                    Margin="10,10,10,0">
+            <Label Content="Suma:"
+                   FontSize="32" 
+                   Width="100"
+                   Margin="0,0,30,0"/>
+            <Label Content="---"
+                   Foreground="Blue"
+                   x:Name="lbSuma"                    
+                   FontSize="32"
+                   Width="200" />
+        </StackPanel>
+    </StackPanel>
+</Window>

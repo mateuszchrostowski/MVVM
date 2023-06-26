@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mw="clr-namespace:MVVM_Kolory.ModelWidoku"
+             xmlns:w="clr-namespace:MVVM_Kolory"
+             x:Class="MVVM_Kolory.MainPage"
+             Disappearing="ContentPage_Disappearing">
+
+    <ContentPage.BindingContext>
+        <mw:KolorMW />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <w:DoubleToByteConverter x:Key="d2b" />
+        <w:RGBToColorConverter x:Key="rgb2c" />
+    </ContentPage.Resources>
+    
+    <Grid ColumnDefinitions="*,75" RowDefinitions="*,50,50,50,50" 
+          Margin="10">
+        <Rectangle Grid.ColumnSpan="2"
+            x:Name="prostokąt"            
+            Margin="0,0,0,10">
+            <Rectangle.Background>
+                <MultiBinding Mode="OneWay" Converter="{StaticResource rgb2c}">
+                    <Binding Path="R" />
+                    <Binding Path="G" />
+                    <Binding Path="B" />
+                </MultiBinding>
+            </Rectangle.Background>
+        </Rectangle>
+        <Slider x:Name="suwakR" Grid.Row="1" Value="{Binding R}" Margin="0,0,10,10" 
+                Minimum="0" Maximum="1" />
+        <Label x:Name="etykietaR" Grid.Row="1" Grid.Column="1" 
+               HorizontalTextAlignment="End" FontSize="30" 
+               Text="{Binding R, Mode=OneWay, Converter={StaticResource d2b}}" />
+        <Slider x:Name="suwakG" Grid.Row="2" Value="{Binding G}" Margin="0,0,10,10" 
+                />
+        <Label x:Name="etykietaG" Grid.Row="2" Grid.Column="1" 
+               HorizontalTextAlignment="End" FontSize="30" 
+               Text="{Binding G, Mode=OneWay, Converter={StaticResource d2b}}" />
+        <Slider x:Name="suwakB" Grid.Row="3" Value="{Binding B}" Margin="0,0,10,0"
+               />
+        <Label x:Name="etykietaB" Grid.Row="3" Grid.Column="1" 
+               HorizontalTextAlignment="End" FontSize="30" 
+               Text="{Binding B, Mode=OneWay, Converter={StaticResource d2b}}" />
+        <Button Grid.Row="4" WidthRequest="300" Text="Resetuj" Command="{Binding Resetuj}" />
+    </Grid>
+
+</ContentPage>
